@@ -51,6 +51,7 @@
             lstDepartamentos.Name = "lstDepartamentos";
             lstDepartamentos.Size = new Size(227, 214);
             lstDepartamentos.TabIndex = 1;
+            lstDepartamentos.SelectedIndexChanged += lstDepartamentos_SelectedIndexChanged;
             // 
             // label2
             // 
@@ -64,7 +65,7 @@
             // lstEmpleados
             // 
             lstEmpleados.FormattingEnabled = true;
-            lstEmpleados.Location = new Point(297, 47);
+            lstEmpleados.Location = new Point(302, 48);
             lstEmpleados.Name = "lstEmpleados";
             lstEmpleados.Size = new Size(258, 364);
             lstEmpleados.TabIndex = 3;
@@ -77,6 +78,7 @@
             btnEliminar.TabIndex = 4;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // Form07DepartamentosEmpleados
             // 
