@@ -1,9 +1,11 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -81,8 +83,21 @@ namespace AdoNetCore
             this.com.CommandType = CommandType.StoredProcedure;
             this.com.CommandText = sql;
             await this.cn.OpenAsync();
+            int afectados = await this.com.ExecuteNonQueryAsync();
+            await this.cn.CloseAsync();
+            this.com.Parameters.Clear();
+            await this.LoadPlantilla(nombre);
+            MessageBox.Show("Registros modificados " + afectados);
+        }
+
+        public async Task LoadPlantilla(string nombre)
+        {
+            string sql = "SP_GETPLANTILLA_HOSPITAL";
+            this.com.Parameters.AddWithValue("@nombre", nombre);
+            this.com.CommandType = CommandType.StoredProcedure;
+            this.com.CommandText = sql;
+            await this.cn.OpenAsync();
             this.reader = await this.com.ExecuteReaderAsync();
-            int modificados = await this.com.ExecuteNonQueryAsync();
             this.lstPlantilla.Items.Clear();
             while (await this.reader.ReadAsync())
             {
@@ -95,8 +110,14 @@ namespace AdoNetCore
             this.com.Parameters.Clear();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void cmbHospitales_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.cmbHospitales.SelectedIndex != -1)
+            {
+                string nombre =
+                    this.cmbHospitales.SelectedItem.ToString();
+                await this.LoadPlantilla(nombre);
+            }
         }
     }
 }

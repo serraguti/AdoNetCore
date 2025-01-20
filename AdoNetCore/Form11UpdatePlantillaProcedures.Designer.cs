@@ -35,7 +35,6 @@
             txtIncremento = new TextBox();
             label3 = new Label();
             lstPlantilla = new ListBox();
-            button1 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -54,6 +53,7 @@
             cmbHospitales.Name = "cmbHospitales";
             cmbHospitales.Size = new Size(227, 38);
             cmbHospitales.TabIndex = 1;
+            cmbHospitales.SelectedIndexChanged += cmbHospitales_SelectedIndexChanged;
             // 
             // btnModificarSalarios
             // 
@@ -98,22 +98,11 @@
             lstPlantilla.Size = new Size(560, 244);
             lstPlantilla.TabIndex = 6;
             // 
-            // button1
-            // 
-            button1.Location = new Point(455, 118);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 7;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // Form11UpdatePlantillaProcedures
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(606, 465);
-            Controls.Add(button1);
             Controls.Add(lstPlantilla);
             Controls.Add(label3);
             Controls.Add(txtIncremento);
@@ -138,6 +127,5 @@
         private TextBox txtIncremento;
         private Label label3;
         private ListBox lstPlantilla;
-        private Button button1;
     }
 }
